@@ -1,0 +1,45 @@
+services:
+  webserver:
+    image: php:8.3-apache
+    container_name: picpay_webserver
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./server:/var/www/html
+    ports:
+      - "8000:80"
+    networks:
+      - webnet
+
+  database:
+    image: mysql:8.1
+    container_name: picpay_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_PWD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${USER_NAME}
+      MYSQL_PASSWORD: ${USER_PWD}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - webnet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: picpay_phpmyadmin
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8080:80"
+    networks:
+      - webnet
+
+volumes:
+  db_data:
+
+networks:
+  webnet:
