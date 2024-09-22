@@ -1,5 +1,5 @@
 <?php
-namespace Picpay\Challenge\Security;
+namespace Picpay\Challenge\core\Security;
 
 class External
 {

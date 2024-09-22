@@ -1,5 +1,5 @@
 <?php
-namespace Picpay\Challenge\Http\Controllers;
+namespace Picpay\Challenge\core\Http\Controllers;
 
 class Controller
 {
