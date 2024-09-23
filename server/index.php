@@ -1,10 +1,11 @@
 <?php
-// require_once("vendor/autoload.php");
+require_once "vendor/autoload.php";
 
-// use Picpay\Challenge\routes\Api;
+use Picpay\Challenge\routes\Route;
+use Picpay\Challenge\core\Http\Controllers\HomeController;
 
-// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-// $dotenv->load();
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-// echo Api::go();
-echo '<pre>'; print_r($_SERVER); echo '</pre>';
+Route::get('/sas/:id', HomeController::class, 'index');
+Route::callback();
