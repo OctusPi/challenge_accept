@@ -2,15 +2,19 @@
 namespace Picpay\Challenge\routes;
 use Picpay\Challenge\core\Http\Response;
 use Picpay\Challenge\core\Security\External;
-use stdClass;
 
-class Api
+class Route
 {
     private static string $namespace = 'Picpay\\Challenge\\core\\Http\\Controllers\\'; 
 
     private static function getRoute(): object
     {
         return (object) External::sanitize(['uri' => $_SERVER['REQUEST_URI']]);
+    }
+
+    public static function get(string $uri, string $controller, string $action): string
+    {
+        
     }
 
     public static function go(?string $destiny = null, ?string $action = null, ?array $params = null): string
@@ -29,4 +33,6 @@ class Api
 
         return Response::json(['alert' => 'Destino não localizado...'],404);
     }
+
+    
 }
